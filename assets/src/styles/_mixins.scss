@@ -1,0 +1,157 @@
+// Button mixins
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-lg;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-medium;
+  line-height: $line-height-tight;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-fast;
+  white-space: nowrap;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.2);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $color-primary;
+  color: white;
+  border-color: $color-primary;
+  
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+    border-color: $color-primary-dark;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: white;
+  color: $color-text;
+  border-color: $color-border;
+  
+  &:hover:not(:disabled) {
+    background: $bg-secondary;
+    border-color: $color-secondary;
+  }
+}
+
+@mixin button-success {
+  @include button-base;
+  background: $color-success;
+  color: white;
+  border-color: $color-success;
+  
+  &:hover:not(:disabled) {
+    background: darken($color-success, 10%);
+    border-color: darken($color-success, 10%);
+  }
+}
+
+// Input mixins
+@mixin input-base {
+  display: block;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  background: white;
+  font-size: $font-size-sm;
+  line-height: $line-height-normal;
+  transition: border-color $transition-fast;
+  
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+  }
+  
+  &::placeholder {
+    color: $color-text-light;
+  }
+}
+
+// Card mixins
+@mixin card {
+  background: white;
+  border: 1px solid $color-border-light;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// Drag and drop
+@mixin draggable {
+  cursor: grab;
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  &.dragging {
+    opacity: 0.5;
+    transform: rotate(5deg);
+  }
+}
+
+@mixin drop-zone {
+  position: relative;
+  min-height: 20px;
+  
+  &.drop-active {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $color-primary;
+      z-index: $z-dropdown;
+    }
+  }
+}

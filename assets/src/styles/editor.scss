@@ -1,0 +1,27 @@
+// Editor Styles (for Gutenberg integration)
+@import 'variables';
+@import 'mixins';
+@import 'components/blocks';
+
+.article-builder-editor {
+  font-family: $font-family-base;
+  
+  .editor-wrapper {
+    border: 1px solid $color-border;
+    border-radius: $border-radius;
+    background: white;
+    min-height: 300px;
+  }
+  
+  .editor-placeholder {
+    @include flex-center;
+    height: 200px;
+    color: $color-text-light;
+    text-align: center;
+    
+    p {
+      margin: 0;
+      font-size: $font-size-sm;
+    }
+  }
+}

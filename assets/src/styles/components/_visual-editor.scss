@@ -1,0 +1,169 @@
+.visual-editor {
+  flex: 1;
+  padding: $spacing-xl;
+  background: $bg-secondary;
+  min-height: 100%;
+  
+  &.drop-active {
+    background: rgba($color-primary, 0.02);
+  }
+  
+  .editor-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    border-radius: $border-radius-lg;
+    box-shadow: $shadow-md;
+    min-height: 500px;
+  }
+  
+  .editor-empty {
+    @include flex-center;
+    height: 500px;
+    text-align: center;
+    
+    .empty-state {
+      h3 {
+        margin: 0 0 $spacing-md 0;
+        color: $color-text-light;
+        font-weight: $font-weight-medium;
+      }
+      
+      p {
+        margin: 0;
+        color: $color-text-light;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// Block Item
+.block-item {
+  position: relative;
+  margin: $spacing-md;
+  border: 1px solid transparent;
+  border-radius: $border-radius;
+  transition: all $transition-fast;
+  
+  &:hover {
+    border-color: $color-border;
+    
+    .block-controls {
+      opacity: 1;
+    }
+  }
+  
+  &--selected {
+    border-color: $color-primary;
+    box-shadow: 0 0 0 2px rgba($color-primary, 0.1);
+    
+    .block-controls {
+      opacity: 1;
+    }
+  }
+  
+  &--dragging {
+    opacity: 0.5;
+    transform: rotate(2deg);
+  }
+  
+  .block-controls {
+    position: absolute;
+    top: -12px;
+    right: $spacing-sm;
+    display: flex;
+    align-items: center;
+    gap: $spacing-xs;
+    opacity: 0;
+    transition: opacity $transition-fast;
+    z-index: $z-dropdown;
+    
+    .block-control {
+      background: white;
+      border: 1px solid $color-border;
+      border-radius: $border-radius;
+      width: 24px;
+      height: 24px;
+      @include flex-center;
+      font-size: $font-size-xs;
+      cursor: pointer;
+      transition: all $transition-fast;
+      
+      &--drag {
+        @include draggable;
+        color: $color-text-light;
+        
+        &:hover {
+          color: $color-text;
+          border-color: $color-secondary;
+        }
+      }
+      
+      &--remove {
+        color: $color-error;
+        font-size: $font-size-sm;
+        
+        &:hover {
+          background: $color-error;
+          color: white;
+          border-color: $color-error;
+        }
+      }
+    }
+    
+    .block-type {
+      background: $color-primary;
+      color: white;
+      padding: 2px $spacing-sm;
+      border-radius: $border-radius;
+      font-size: $font-size-xs;
+      font-weight: $font-weight-medium;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+  
+  .block-content {
+    position: relative;
+    padding: $spacing-lg;
+  }
+  
+  .block-selection-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: $color-primary;
+    border-radius: 0 $border-radius $border-radius 0;
+  }
+}
+
+// Drop Zone
+.drop-zone {
+  @include drop-zone;
+  margin: 0 $spacing-md;
+  border-radius: $border-radius;
+  transition: all $transition-fast;
+  
+  &--active {
+    background: rgba($color-primary, 0.05);
+    border: 2px dashed $color-primary;
+    min-height: 40px;
+    
+    .drop-zone-indicator {
+      @include flex-center;
+      height: 100%;
+      color: $color-primary;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+  }
+  
+  &--can-drop {
+    &:hover {
+      background: rgba($color-primary, 0.02);
+    }
+  }
+}

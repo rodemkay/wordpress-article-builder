@@ -1,0 +1,523 @@
+// Block wrapper
+.block-wrapper {
+  margin-bottom: $spacing-lg;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Paragraph Block
+.paragraph-block {
+  p {
+    margin: 0;
+    line-height: $line-height-relaxed;
+    color: $color-text;
+    
+    &[contenteditable="true"] {
+      outline: none;
+      border: 1px solid transparent;
+      padding: $spacing-sm;
+      border-radius: $border-radius;
+      transition: border-color $transition-fast;
+      
+      &:focus {
+        border-color: $color-primary;
+        background: rgba($color-primary, 0.02);
+      }
+      
+      &:empty::before {
+        content: attr(placeholder);
+        color: $color-text-light;
+      }
+    }
+  }
+}
+
+// Heading Block
+.heading-block {
+  .heading-controls {
+    display: flex;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-sm;
+    
+    .heading-level {
+      @include button-base;
+      font-size: $font-size-xs;
+      padding: $spacing-xs $spacing-sm;
+      background: white;
+      border: 1px solid $color-border;
+      color: $color-text-light;
+      
+      &.active {
+        background: $color-primary;
+        color: white;
+        border-color: $color-primary;
+      }
+      
+      &:hover:not(.active) {
+        border-color: $color-secondary;
+        color: $color-text;
+      }
+    }
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    color: $color-text;
+    
+    &[contenteditable="true"] {
+      outline: none;
+      border: 1px solid transparent;
+      padding: $spacing-sm;
+      border-radius: $border-radius;
+      transition: border-color $transition-fast;
+      
+      &:focus {
+        border-color: $color-primary;
+        background: rgba($color-primary, 0.02);
+      }
+      
+      &:empty::before {
+        content: attr(placeholder);
+        color: $color-text-light;
+      }
+    }
+  }
+}
+
+// Image Block
+.image-block {
+  .image-controls {
+    background: $bg-tertiary;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-lg;
+    
+    .control-group {
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-text;
+      }
+      
+      input, select {
+        @include input-base;
+      }
+      
+      input[type="file"] {
+        padding: $spacing-sm;
+        border: 1px dashed $color-border;
+        background: white;
+        cursor: pointer;
+        
+        &:hover {
+          border-color: $color-primary;
+        }
+      }
+    }
+    
+    .control-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: $spacing-md;
+    }
+  }
+  
+  .image-preview,
+  .image-figure {
+    text-align: center;
+    
+    &.width-small { max-width: 25%; }
+    &.width-medium { max-width: 50%; }
+    &.width-large { max-width: 75%; }
+    &.width-full { max-width: 100%; }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: $border-radius;
+      box-shadow: $shadow-sm;
+    }
+    
+    figcaption {
+      margin-top: $spacing-sm;
+      font-size: $font-size-sm;
+      color: $color-text-light;
+      font-style: italic;
+    }
+  }
+  
+  .image-placeholder {
+    @include flex-center;
+    height: 200px;
+    border: 2px dashed $color-border;
+    border-radius: $border-radius;
+    background: $bg-tertiary;
+    
+    .placeholder-content {
+      text-align: center;
+      color: $color-text-light;
+      
+      span {
+        display: block;
+        font-size: $font-size-3xl;
+        margin-bottom: $spacing-sm;
+      }
+      
+      p {
+        margin: 0;
+        font-size: $font-size-sm;
+      }
+    }
+  }
+}
+
+// Quote Block
+.quote-block {
+  border-left: 4px solid $color-primary;
+  padding-left: $spacing-xl;
+  margin: $spacing-xl 0;
+  
+  blockquote {
+    margin: 0 0 $spacing-md 0;
+    font-size: $font-size-lg;
+    font-style: italic;
+    line-height: $line-height-relaxed;
+    color: $color-text;
+    
+    &[contenteditable="true"] {
+      outline: none;
+      border: 1px solid transparent;
+      padding: $spacing-sm;
+      border-radius: $border-radius;
+      
+      &:focus {
+        border-color: $color-primary;
+        background: rgba($color-primary, 0.02);
+      }
+      
+      &:empty::before {
+        content: attr(placeholder);
+        color: $color-text-light;
+      }
+    }
+  }
+  
+  cite {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    font-style: normal;
+    
+    &[contenteditable="true"] {
+      outline: none;
+      border: 1px solid transparent;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius;
+      display: inline-block;
+      
+      &:focus {
+        border-color: $color-primary;
+        background: rgba($color-primary, 0.02);
+      }
+      
+      &:empty::before {
+        content: attr(placeholder);
+        color: $color-text-light;
+      }
+    }
+  }
+}
+
+// List Block
+.list-block {
+  .list-controls {
+    background: $bg-tertiary;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-lg;
+    
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-sm;
+      margin-right: $spacing-lg;
+      font-size: $font-size-sm;
+      cursor: pointer;
+      
+      input[type="radio"] {
+        margin: 0;
+      }
+    }
+  }
+  
+  .list-items {
+    margin-bottom: $spacing-lg;
+  }
+  
+  .list-item-editor {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+    
+    input {
+      @include input-base;
+      flex: 1;
+    }
+    
+    .remove-item {
+      @include button-base;
+      background: $color-error;
+      color: white;
+      border-color: $color-error;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      font-size: $font-size-lg;
+      
+      &:hover {
+        background: darken($color-error, 10%);
+      }
+    }
+  }
+  
+  .add-item {
+    @include button-secondary;
+    font-size: $font-size-sm;
+  }
+  
+  ul, ol {
+    margin: 0;
+    padding-left: $spacing-xl;
+    
+    li {
+      margin-bottom: $spacing-sm;
+      line-height: $line-height-relaxed;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+// Code Block
+.code-block {
+  .code-controls {
+    background: $bg-tertiary;
+    padding: $spacing-lg;
+    border-radius: $border-radius $border-radius 0 0;
+    border-bottom: 1px solid $color-border;
+    
+    label {
+      display: inline-flex;
+      align-items: center;
+      gap: $spacing-sm;
+      font-size: $font-size-sm;
+      font-weight: $font-weight-medium;
+    }
+    
+    select {
+      @include input-base;
+      width: auto;
+      min-width: 150px;
+    }
+  }
+  
+  .code-textarea {
+    @include input-base;
+    font-family: $font-family-mono;
+    font-size: $font-size-sm;
+    min-height: 150px;
+    resize: vertical;
+    border-radius: 0 0 $border-radius $border-radius;
+    border-top: none;
+  }
+  
+  .code-header {
+    background: $color-text;
+    color: white;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: $border-radius $border-radius 0 0;
+    
+    .code-language {
+      font-size: $font-size-xs;
+      font-weight: $font-weight-medium;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+  
+  pre {
+    margin: 0;
+    background: #1a1a1a;
+    color: #f8f8f2;
+    padding: $spacing-lg;
+    border-radius: 0 0 $border-radius $border-radius;
+    overflow-x: auto;
+    
+    code {
+      font-family: $font-family-mono;
+      font-size: $font-size-sm;
+      line-height: $line-height-relaxed;
+    }
+  }
+}
+
+// Divider Block
+.divider-block {
+  .divider-controls {
+    background: $bg-tertiary;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-lg;
+    
+    .control-group {
+      display: inline-block;
+      margin-right: $spacing-xl;
+      
+      label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+      }
+      
+      select {
+        @include input-base;
+        width: auto;
+        min-width: 120px;
+      }
+    }
+  }
+  
+  .divider-preview {
+    padding: $spacing-lg 0;
+  }
+  
+  .divider-line {
+    border: none;
+    border-top: 2px solid $color-border;
+    margin: $spacing-xl auto;
+    
+    &.width-narrow { width: 25%; }
+    &.width-medium { width: 50%; }
+    &.width-wide { width: 75%; }
+    &.width-full { width: 100%; }
+    
+    &.style-solid { border-top-style: solid; }
+    &.style-dashed { border-top-style: dashed; }
+    &.style-dotted { border-top-style: dotted; }
+    &.style-double { 
+      border-top-style: double;
+      border-top-width: 4px;
+    }
+  }
+}
+
+// Button Block
+.button-block {
+  .button-controls {
+    background: $bg-tertiary;
+    padding: $spacing-lg;
+    border-radius: $border-radius;
+    margin-bottom: $spacing-lg;
+    
+    .control-group {
+      margin-bottom: $spacing-md;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      label {
+        display: block;
+        margin-bottom: $spacing-xs;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        
+        input[type="checkbox"] {
+          margin-right: $spacing-sm;
+        }
+      }
+      
+      input, select {
+        @include input-base;
+      }
+    }
+    
+    .control-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: $spacing-md;
+    }
+  }
+  
+  .button-preview,
+  .button-wrapper {
+    padding: $spacing-lg 0;
+    
+    &.alignment-left { text-align: left; }
+    &.alignment-center { text-align: center; }
+    &.alignment-right { text-align: right; }
+  }
+  
+  .btn {
+    @include button-base;
+    text-decoration: none;
+    
+    &.btn-primary {
+      @include button-primary;
+    }
+    
+    &.btn-secondary {
+      @include button-secondary;
+    }
+    
+    &.btn-outline {
+      background: transparent;
+      color: $color-primary;
+      border-color: $color-primary;
+      
+      &:hover:not(:disabled) {
+        background: $color-primary;
+        color: white;
+      }
+    }
+    
+    &.btn-ghost {
+      background: transparent;
+      color: $color-text;
+      border-color: transparent;
+      
+      &:hover:not(:disabled) {
+        background: $bg-secondary;
+        border-color: $color-border;
+      }
+    }
+    
+    &.btn-small {
+      padding: $spacing-xs $spacing-md;
+      font-size: $font-size-xs;
+    }
+    
+    &.btn-medium {
+      padding: $spacing-sm $spacing-lg;
+      font-size: $font-size-sm;
+    }
+    
+    &.btn-large {
+      padding: $spacing-md $spacing-xl;
+      font-size: $font-size-base;
+    }
+  }
+}

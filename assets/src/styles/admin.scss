@@ -1,0 +1,59 @@
+// Admin Interface Styles
+@import 'variables';
+@import 'mixins';
+@import 'components/toolbar';
+@import 'components/visual-editor';
+@import 'components/sidebar';
+@import 'components/blocks';
+
+.article-builder-admin {
+  font-family: $font-family-base;
+  background: $bg-primary;
+  min-height: 100vh;
+  
+  .article-builder-error {
+    background: $color-error;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: $border-radius;
+    
+    p {
+      margin: 0;
+    }
+  }
+  
+  .article-builder-content {
+    display: flex;
+    height: calc(100vh - #{$toolbar-height});
+    
+    .editor-container {
+      flex: 1;
+      overflow-y: auto;
+    }
+  }
+}
+
+// Loading states
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid $color-primary;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
